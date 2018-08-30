@@ -1,0 +1,46 @@
+version: "2"
+
+services:
+  db:
+    build: db
+    read_only: true
+    restart: unless-stopped
+    volumes:
+      - ./volumes/db/var/lib/postgresql/data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - POSTGRES_USER=mmuser
+      - POSTGRES_PASSWORD=mmuser_password
+      - POSTGRES_DB=mattermost
+    networks:
+      - mattermostnw
+
+  app:
+    build:
+      context: app
+    restart: unless-stopped
+    volumes:
+      - ./volumes/app/mattermost/config:/mattermost/config:rw
+      - ./volumes/app/mattermost/data:/mattermost/data:rw
+      - ./volumes/app/mattermost/logs:/mattermost/logs:rw
+      - ./volumes/app/mattermost/plugins:/mattermost/plugins:rw
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      # set same as db credentials and dbname
+      - MM_USERNAME=mmuser
+      - MM_PASSWORD=mmuser_password
+      - MM_DBNAME=mattermost
+      - VIRTUAL_HOST=chat.codeenginestudio.com
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=chat.codeenginestudio.com
+      - LETSENCRYPT_EMAIL=admin@chat.codeenginestudio.com
+    ports:
+      - "8000:8000"
+    expose:
+     - "8000"
+    networks:
+      - mattermostnw
+
+networks:
+  mattermostnw:
+    external: true
