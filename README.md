@@ -1,4 +1,4 @@
-## Get Start
+## Getting Started
 
 #### First, create a Docker network. This enables container DNS, which allows containers to communicate with one another by name.
 
@@ -17,7 +17,7 @@ docker network create mattermostnw
 docker run --name nginx-proxy --net mattermostnw -p 80:80 -p 443:443 -v /path/to/custom.conf:/etc/nginx/conf.d/my_proxy.conf:ro -v ~/certs:/etc/nginx/certs -v /etc/nginx/vhost.d -v /usr/share/nginx/html -v /var/run/docker.sock:/tmp/docker.sock:ro --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy -d --restart always jwilder/nginx-proxy
 ```
 
-**Note: Remember change /path/to/custom.conf to your own
+**Note: Remember change the mounted paths to your own**
 
 
 #### Start the Let’s Encrypt Nginx Proxy Companion.
