@@ -1,6 +1,6 @@
 ## Getting Started
 
-#### First, create a Docker network. This enables container DNS, which allows containers to communicate with one another by name.
+First, create a Docker network. This enables container DNS, which allows containers to communicate with one another by name.
 
 ```
 docker network create mattermostnw
