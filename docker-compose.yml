@@ -30,10 +30,10 @@ services:
       - MM_USERNAME=mmuser
       - MM_PASSWORD=mmuser_password
       - MM_DBNAME=mattermost
-      - VIRTUAL_HOST=chat.codeenginestudio.com
+      - VIRTUAL_HOST=chat.yourdomain.com
       - VIRTUAL_PORT=8000
-      - LETSENCRYPT_HOST=chat.codeenginestudio.com
-      - LETSENCRYPT_EMAIL=admin@chat.codeenginestudio.com
+      - LETSENCRYPT_HOST=chat.yourdomain.com
+      - LETSENCRYPT_EMAIL=admin@chat.yourdomain.com
     ports:
       - "8000:8000"
     expose:
